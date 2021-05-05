@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Stubs;
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Stubs;
 
 class PDOStub extends \PDO
 {
-    public function __construct()
-    {
-    }
 }

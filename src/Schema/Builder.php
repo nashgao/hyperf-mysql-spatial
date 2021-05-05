@@ -14,7 +14,7 @@ class Builder extends MySqlBuilder
      *
      * @param string $table
      */
-    protected function createBlueprint($table, Closure $callback = null): Blueprint
+    public function createBlueprint($table, Closure $callback = null): Blueprint
     {
         return new Blueprint($table, $callback);
     }

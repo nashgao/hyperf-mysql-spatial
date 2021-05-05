@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Types;
+
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
 use Nashgao\HyperfMySQLSpatial\Types\GeometryInterface;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;

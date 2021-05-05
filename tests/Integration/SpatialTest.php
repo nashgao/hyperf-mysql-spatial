@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Integration;
+
+use Nashgao\HyperfMySQLSpatial\Test\Integration\Models\GeometryModel;
+use Nashgao\HyperfMySQLSpatial\Test\Integration\Models\NoSpatialFieldsModel;
 use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\MultiPoint;
@@ -16,8 +20,8 @@ use Nashgao\HyperfMySQLSpatial\Types\Polygon;
 class SpatialTest extends IntegrationBaseTestCase
 {
     protected $migrations = [
-        CreateLocationTable::class,
-        UpdateLocationTable::class,
+        \CreateLocationTable::class,
+        \UpdateLocationTable::class,
     ];
 
     public function testSpatialFieldsNotDefinedException()

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\DB;
+namespace Nashgao\HyperfMySQLSpatial\Test\Integration;
+
+use Hyperf\DbConnection\Db;
 
 /**
  * @internal
@@ -11,13 +13,13 @@ use Illuminate\Support\Facades\DB;
 class MigrationTest extends IntegrationBaseTestCase
 {
     protected $migrations = [
-        CreateLocationTable::class,
-        UpdateLocationTable::class,
+        \CreateLocationTable::class,
+        \UpdateLocationTable::class,
     ];
 
     public function testTableWasCreatedWithRightTypes()
     {
-        $result = DB::selectOne('SHOW CREATE TABLE geometry');
+        $result = Db::selectOne('SHOW CREATE TABLE geometry');
 
         $expected = 'CREATE TABLE `geometry` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -41,7 +43,7 @@ class MigrationTest extends IntegrationBaseTestCase
 
     public function testTableWasCreatedWithSrid()
     {
-        $result = DB::selectOne('SHOW CREATE TABLE with_srid');
+        $result = Db::selectOne('SHOW CREATE TABLE with_srid');
 
         $expected = 'CREATE TABLE `with_srid` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,

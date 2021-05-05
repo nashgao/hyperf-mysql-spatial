@@ -6,6 +6,10 @@ use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
 use Nashgao\HyperfMySQLSpatial\Types\Polygon;
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Types;
+
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
+
 /**
  * @internal
  * @coversNothing

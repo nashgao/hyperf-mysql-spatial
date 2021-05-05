@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\DB;
-use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
-use Nashgao\HyperfMySQLSpatial\SpatialServiceProvider;
+namespace Nashgao\HyperfMySQLSpatial\Test\Integration;
 
-abstract class IntegrationBaseTestCase extends BaseTestCase
+use Closure;
+use Hyperf\DbConnection\Db;
+use PHPUnit\Framework\TestCase;
+
+abstract class IntegrationBaseTestCase extends TestCase
 {
     protected $after_fix = false;
 
@@ -15,7 +17,7 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
     /**
      * Setup DB before each test.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,43 +32,13 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
         //});
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->onMigrations(function ($migrationClass) {
             (new $migrationClass())->down();
         }, true);
 
         parent::tearDown();
-    }
-
-    /**
-     * Boots the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
-        $app->register(SpatialServiceProvider::class);
-
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
-
-        $app['config']->set('database.default', 'mysql');
-        $app['config']->set('database.connections.mysql.host', env('DB_HOST'));
-        $app['config']->set('database.connections.mysql.port', env('DB_PORT'));
-        $app['config']->set('database.connections.mysql.database', env('DB_DATABASE'));
-        $app['config']->set('database.connections.mysql.username', env('DB_USERNAME'));
-        $app['config']->set('database.connections.mysql.password', env('DB_PASSWORD'));
-        $app['config']->set('database.connections.mysql.modes', [
-            'ONLY_FULL_GROUP_BY',
-            'STRICT_TRANS_TABLES',
-            'NO_ZERO_IN_DATE',
-            'NO_ZERO_DATE',
-            'ERROR_FOR_DIVISION_BY_ZERO',
-            'NO_ENGINE_SUBSTITUTION',
-        ]);
-
-        return $app;
     }
 
     protected function assertDatabaseHas($table, array $data, $connection = null)
@@ -93,7 +65,7 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
     // MySQL 8.0.4 fixed bug #26941370 and bug #88031
     private function isMySQL8AfterFix()
     {
-        $results = DB::select(DB::raw('select version()'));
+        $results = Db::select(Db::raw('select version()')->getValue());
         $mysql_version = $results[0]->{'version()'};
 
         return version_compare($mysql_version, '8.0.4', '>=');

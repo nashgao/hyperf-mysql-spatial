@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Types;
+
 use Nashgao\HyperfMySQLSpatial\Exceptions\UnknownWKTTypeException;
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\Geometry;
 use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;

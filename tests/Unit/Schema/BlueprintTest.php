@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Schema;
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Schema;
 
-use BaseTestCase;
-use Illuminate\Database\Schema\ColumnDefinition;
+use Hyperf\Database\Schema\ColumnDefinition;
 use Mockery;
 use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 
 /**
  * @internal
@@ -20,7 +20,7 @@ class BlueprintTest extends BaseTestCase
      */
     protected $blueprint;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

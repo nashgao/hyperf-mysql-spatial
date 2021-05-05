@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Eloquent;
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Hyperf;
 
-use BaseTestCase;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Database\Query\Grammars\MySqlGrammar;
+use Hyperf\Database\Model\Model;
+use Hyperf\Database\Query\Builder as QueryBuilder;
+use Hyperf\Database\Query\Grammars\MySqlGrammar;
 use Mockery;
 use Nashgao\HyperfMySQLSpatial\Eloquent\Builder;
 use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialExpression;
 use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
 use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
 use Nashgao\HyperfMySQLSpatial\Types\Polygon;
@@ -27,7 +27,7 @@ class BuilderTest extends BaseTestCase
 
     protected $queryBuilder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $connection = Mockery::mock(MysqlConnection::class)->makePartial();
         $grammar = Mockery::mock(MySqlGrammar::class)->makePartial();

@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit;
+
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

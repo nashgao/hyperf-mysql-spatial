@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+namespace Nashgao\HyperfMySQLSpatial\Test\Integration;
+
+use Hyperf\Database\Exception\QueryException;
+use Hyperf\DbConnection\Db;
+use Nashgao\HyperfMySQLSpatial\Test\Integration\Models\WithSridModel;
 use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\MultiPoint;
@@ -16,8 +21,8 @@ use Nashgao\HyperfMySQLSpatial\Types\Polygon;
 class SridSpatialTest extends IntegrationBaseTestCase
 {
     protected $migrations = [
-        CreateLocationTable::class,
-        UpdateLocationTable::class,
+        \CreateLocationTable::class,
+        \UpdateLocationTable::class,
     ];
 
     public function testInsertPointWithSrid()
@@ -114,7 +119,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
         $geo->location = new Point(1, 2);
 
         $this->assertException(
-            Illuminate\Database\QueryException::class,
+            QueryException::class,
             'SQLSTATE[HY000]: General error: 3643 The SRID of the geometry ' .
             'does not match the SRID of the column \'location\'. The SRID ' .
             'of the geometry is 0, but the SRID of the column is 3857. ' .
@@ -131,7 +136,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
         $geo->location = new Point(1, 2, 3857);
         $geo->save();
 
-        $srid = \DB::selectOne('select ST_SRID(location) as srid from with_srid');
+        $srid = Db::selectOne('select ST_SRID(location) as srid from with_srid');
         $this->assertEquals(3857, $srid->srid);
 
         $result = WithSridModel::first();

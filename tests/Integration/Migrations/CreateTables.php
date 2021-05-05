@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
+use Hyperf\Database\Migrations\Migration;
+use Hyperf\Database\Schema\Schema;
 use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
 
 class CreateLocationTable extends Migration

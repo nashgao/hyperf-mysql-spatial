@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
+namespace Nashgao\HyperfMySQLSpatial\Test\Integration\Models;
+
+use Hyperf\Database\Model\Model;
 use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
 
 /**

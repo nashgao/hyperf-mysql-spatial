@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Hyperf;
+
+use Hyperf\Database\Model\Model;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
 use Nashgao\HyperfMySQLSpatial\Exceptions\SpatialFieldsNotDefinedException;
 use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
 
 /**
@@ -27,13 +30,13 @@ class SpatialTraitTest extends BaseTestCase
      */
     protected $queries;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->model = new TestModel();
         $this->queries = &$this->model->getConnection()->getPdo()->queries;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->model->getConnection()->getPdo()->resetQueries();
     }
@@ -580,7 +583,7 @@ class TestNoSpatialModel extends Model
     use \Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
 }
 
-class TestPDO extends PDO
+class TestPDO extends \PDO
 {
     public $queries = [];
 

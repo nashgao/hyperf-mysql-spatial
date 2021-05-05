@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Schema;
+namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Schema;
 
-use BaseTestCase;
 use Mockery;
 use Nashgao\HyperfMySQLSpatial\MysqlConnection;
 use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
 use Nashgao\HyperfMySQLSpatial\Schema\Builder;
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 
 /**
  * @internal
