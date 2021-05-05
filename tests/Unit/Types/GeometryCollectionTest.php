@@ -67,7 +67,7 @@ class GeometryCollectionTest extends BaseTestCase
     public function testInvalidArgumentExceptionNotArrayGeometries()
     {
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             'Nashgao\HyperfMySQLSpatial\Types\GeometryCollection must be a collection of Nashgao\HyperfMySQLSpatial\Types\GeometryInterface'
         );
         $geometrycollection = new GeometryCollection([

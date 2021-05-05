@@ -25,22 +25,22 @@ This package also works with MariaDB. Please refer to the [MySQL/MariaDB Spatial
 Add the package using composer:
 
 ```sh
-$ composer require Nashgao/laravel-mysql-spatial:^4.0
+$ composer require Nashgao/hyperf-mysql-spatial:^4.0
 
 # or for Laravel version < 8.0
-$ composer require Nashgao/laravel-mysql-spatial:^3.0
+$ composer require Nashgao/hyperf-mysql-spatial:^3.0
 ```
 
 For MySQL 5.7:
 
 ```shell
-$ composer require Nashgao/laravel-mysql-spatial:^2.0
+$ composer require Nashgao/hyperf-mysql-spatial:^2.0
 ```
 
 For MySQL 5.6 and 5.5:
 
 ```shell
-$ composer require Nashgao/laravel-mysql-spatial:^1.0
+$ composer require Nashgao/hyperf-mysql-spatial:^1.0
 ```
 
 For Laravel versions before 5.5 or if not using auto-discovery, register the service provider in `config/app.php`:
