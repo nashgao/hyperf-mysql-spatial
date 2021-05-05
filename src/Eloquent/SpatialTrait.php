@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Eloquent;
+namespace Nashgao\HyperfMySQLSpatial\Eloquent;
 
-use Grimzy\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
-use Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException;
-use Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialRelationFunction;
-use Grimzy\LaravelMysqlSpatial\Types\Geometry;
-use Grimzy\LaravelMysqlSpatial\Types\GeometryInterface;
 use Hyperf\Database\Model\Builder as HyperfBuilder;
+use Nashgao\HyperfMySQLSpatial\Exceptions\SpatialFieldsNotDefinedException;
+use Nashgao\HyperfMySQLSpatial\Exceptions\UnknownSpatialFunctionException;
+use Nashgao\HyperfMySQLSpatial\Exceptions\UnknownSpatialRelationFunction;
+use Nashgao\HyperfMySQLSpatial\Types\Geometry;
+use Nashgao\HyperfMySQLSpatial\Types\GeometryInterface;
 
 /**
  * Trait SpatialTrait.
@@ -62,6 +62,7 @@ trait SpatialTrait
 
     /**
      * Create a new Eloquent query builder for the model.
+     * @param mixed $query
      */
     public function newModelBuilder($query): Builder
     {

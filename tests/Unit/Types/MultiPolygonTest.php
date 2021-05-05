@@ -1,10 +1,16 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\MultiPolygon;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\Types\LineString;
+use Nashgao\HyperfMySQLSpatial\Types\MultiPolygon;
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+use Nashgao\HyperfMySQLSpatial\Types\Polygon;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class MultiPolygonTest extends BaseTestCase
 {
     public function testFromWKT()
@@ -66,7 +72,7 @@ class MultiPolygonTest extends BaseTestCase
     public function testInvalidGeoJsonException()
     {
         $this->assertException(
-            \Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
+            \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
             sprintf('Expected %s, got %s', GeoJson\Geometry\MultiPolygon::class, GeoJson\Geometry\Point::class)
         );
         MultiPolygon::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
@@ -82,7 +88,7 @@ class MultiPolygonTest extends BaseTestCase
     {
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiPolygon must contain at least 1 entry'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiPolygon must contain at least 1 entry'
         );
         $multipolygon = new MultiPolygon([]);
     }
@@ -91,7 +97,7 @@ class MultiPolygonTest extends BaseTestCase
     {
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiPolygon must be a collection of Grimzy\LaravelMysqlSpatial\Types\Polygon'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiPolygon must be a collection of Nashgao\HyperfMySQLSpatial\Types\Polygon'
         );
         $multipolygon = new MultiPolygon([
             $this->getPolygon1(),
@@ -118,7 +124,7 @@ class MultiPolygonTest extends BaseTestCase
         // assert invalid
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiPolygon must be a collection of Grimzy\LaravelMysqlSpatial\Types\Polygon'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiPolygon must be a collection of Nashgao\HyperfMySQLSpatial\Types\Polygon'
         );
         $multipolygon[] = 1;
     }

@@ -1,23 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Eloquent;
 
 use BaseTestCase;
-use Grimzy\LaravelMysqlSpatial\Eloquent\Builder;
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialExpression;
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
-use Grimzy\LaravelMysqlSpatial\MysqlConnection;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Grammars\MySqlGrammar;
 use Mockery;
+use Nashgao\HyperfMySQLSpatial\Eloquent\Builder;
+use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialExpression;
+use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
+use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\Types\LineString;
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+use Nashgao\HyperfMySQLSpatial\Types\Polygon;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class BuilderTest extends BaseTestCase
 {
     protected $builder;
+
     protected $queryBuilder;
 
     protected function setUp()
@@ -135,5 +142,6 @@ class TestBuilderModel extends Model
     use SpatialTrait;
 
     public $timestamps = false;
+
     protected $spatialFields = ['point', 'linestring', 'polygon'];
 }

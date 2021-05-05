@@ -1,10 +1,16 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Connectors\ConnectionFactory;
-use Grimzy\LaravelMysqlSpatial\MysqlConnection;
+declare(strict_types=1);
+
 use Illuminate\Container\Container;
+use Nashgao\HyperfMySQLSpatial\Connectors\ConnectionFactory;
+use Nashgao\HyperfMySQLSpatial\MysqlConnection;
 use Stubs\PDOStub;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ConnectionFactoryBaseTest extends BaseTestCase
 {
     public function testMakeCallsCreateConnection()

@@ -1,13 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Schema;
 
 use BaseTestCase;
-use Grimzy\LaravelMysqlSpatial\MysqlConnection;
-use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
-use Grimzy\LaravelMysqlSpatial\Schema\Builder;
 use Mockery;
+use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
+use Nashgao\HyperfMySQLSpatial\Schema\Builder;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class BuilderTest extends BaseTestCase
 {
     public function testReturnsCorrectBlueprint()

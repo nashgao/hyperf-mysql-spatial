@@ -1,12 +1,18 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\GeometryCollection;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\MultiPoint;
-use Grimzy\LaravelMysqlSpatial\Types\MultiPolygon;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
+use Nashgao\HyperfMySQLSpatial\Types\LineString;
+use Nashgao\HyperfMySQLSpatial\Types\MultiPoint;
+use Nashgao\HyperfMySQLSpatial\Types\MultiPolygon;
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+use Nashgao\HyperfMySQLSpatial\Types\Polygon;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class SpatialTest extends IntegrationBaseTestCase
 {
     protected $migrations = [
@@ -20,7 +26,7 @@ class SpatialTest extends IntegrationBaseTestCase
         $geo->geometry = new Point(1, 2);
         $geo->save();
 
-        $this->assertException(\Grimzy\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException::class);
+        $this->assertException(\Nashgao\HyperfMySQLSpatial\Exceptions\SpatialFieldsNotDefinedException::class);
         NoSpatialFieldsModel::all();
     }
 
@@ -241,7 +247,7 @@ class SpatialTest extends IntegrationBaseTestCase
         $loc = new GeometryModel();
         $loc->location = new Point(1, 1);
 
-        $this->assertException(\Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException::class);
+        $this->assertException(\Nashgao\HyperfMySQLSpatial\Exceptions\UnknownSpatialFunctionException::class);
         GeometryModel::orderBySpatial('location', $loc->location, 'does-not-exist')->get();
     }
 
@@ -315,9 +321,9 @@ class SpatialTest extends IntegrationBaseTestCase
     //public function testBounding() {
     //    $point = new Point(0, 0);
     //
-    //    $linestring1 = \Grimzy\LaravelMysqlSpatial\Types\LineString::fromWkt("LINESTRING(1 1, 2 2)");
-    //    $linestring2 = \Grimzy\LaravelMysqlSpatial\Types\LineString::fromWkt("LINESTRING(20 20, 24 24)");
-    //    $linestring3 = \Grimzy\LaravelMysqlSpatial\Types\LineString::fromWkt("LINESTRING(0 10, 10 10)");
+    //    $linestring1 = \Nashgao\HyperfMySQLSpatial\Types\LineString::fromWkt("LINESTRING(1 1, 2 2)");
+    //    $linestring2 = \Nashgao\HyperfMySQLSpatial\Types\LineString::fromWkt("LINESTRING(20 20, 24 24)");
+    //    $linestring3 = \Nashgao\HyperfMySQLSpatial\Types\LineString::fromWkt("LINESTRING(0 10, 10 10)");
     //
     //    $geo1 = new GeometryModel();
     //    $geo1->location = $point;

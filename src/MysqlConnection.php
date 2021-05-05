@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial;
+namespace Nashgao\HyperfMySQLSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
-use Grimzy\LaravelMysqlSpatial\Schema\Builder;
-use Grimzy\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 use Hyperf\Database\Grammar;
 use Hyperf\Database\MySqlConnection as HyperfMySQLConnection;
+use Nashgao\HyperfMySQLSpatial\Schema\Builder;
+use Nashgao\HyperfMySQLSpatial\Schema\Grammars\MySqlGrammar;
 
 class MysqlConnection extends HyperfMySQLConnection
 {

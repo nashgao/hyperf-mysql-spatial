@@ -1,16 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Schema;
 
 use BaseTestCase;
-use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
 use Illuminate\Database\Schema\ColumnDefinition;
 use Mockery;
+use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class BlueprintTest extends BaseTestCase
 {
     /**
-     * @var \Grimzy\LaravelMysqlSpatial\Schema\Blueprint
+     * @var \Nashgao\HyperfMySQLSpatial\Schema\Blueprint
      */
     protected $blueprint;
 

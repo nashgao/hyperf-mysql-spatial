@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Connectors;
+namespace Nashgao\HyperfMySQLSpatial\Connectors;
 
-use Grimzy\LaravelMysqlSpatial\MysqlConnection;
+use Hyperf\Database\ConnectionInterface;
 use Hyperf\Database\Connectors\ConnectionFactory as HyperfConnectionFactory;
-use Illuminate\Database\ConnectionInterface;
+use Nashgao\HyperfMySQLSpatial\MysqlConnection;
 use PDO;
 
 class ConnectionFactory extends HyperfConnectionFactory

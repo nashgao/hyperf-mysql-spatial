@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Types;
+namespace Nashgao\HyperfMySQLSpatial\Types;
 
 use GeoJson\Feature\Feature;
 use GeoJson\GeoJson;
 use GeoJson\Geometry\Point as GeoJsonPoint;
-use Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
+use Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException;
 
 class Point extends Geometry
 {

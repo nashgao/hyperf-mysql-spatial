@@ -1,18 +1,20 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+declare(strict_types=1);
+
 use Illuminate\Database\Eloquent\Model;
+use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
 
 /**
  * Class NoSpatialFieldsModel.
  *
- * @property \Grimzy\LaravelMysqlSpatial\Types\Geometry geometry
+ * @property \Nashgao\HyperfMySQLSpatial\Types\Geometry geometry
  */
 class NoSpatialFieldsModel extends Model
 {
     use SpatialTrait;
 
-    protected $table = 'no_spatial_fields';
-
     public $timestamps = false;
+
+    protected $table = 'no_spatial_fields';
 }

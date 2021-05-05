@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Eloquent;
+namespace Nashgao\HyperfMySQLSpatial\Eloquent;
 
 use Hyperf\Database\Query\Builder as QueryBuilder;
 

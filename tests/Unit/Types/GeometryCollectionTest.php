@@ -1,11 +1,17 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\GeometryCollection;
-use Grimzy\LaravelMysqlSpatial\Types\GeometryInterface;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\Types\GeometryCollection;
+use Nashgao\HyperfMySQLSpatial\Types\GeometryInterface;
+use Nashgao\HyperfMySQLSpatial\Types\LineString;
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+use Nashgao\HyperfMySQLSpatial\Types\Polygon;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class GeometryCollectionTest extends BaseTestCase
 {
     public function testFromWKT()
@@ -59,7 +65,7 @@ class GeometryCollectionTest extends BaseTestCase
     {
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\GeometryCollection must be a collection of Grimzy\LaravelMysqlSpatial\Types\GeometryInterface'
+            'Nashgao\HyperfMySQLSpatial\Types\GeometryCollection must be a collection of Nashgao\HyperfMySQLSpatial\Types\GeometryInterface'
         );
         $geometrycollection = new GeometryCollection([
             $this->getPoint(),
@@ -112,7 +118,7 @@ class GeometryCollectionTest extends BaseTestCase
         // assert invalid
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\GeometryCollection must be a collection of Grimzy\LaravelMysqlSpatial\Types\GeometryInterface'
+            'Nashgao\HyperfMySQLSpatial\Types\GeometryCollection must be a collection of Nashgao\HyperfMySQLSpatial\Types\GeometryInterface'
         );
         $geometryCollection[] = 1;
     }
@@ -130,7 +136,7 @@ class GeometryCollectionTest extends BaseTestCase
     public function testInvalidGeoJsonException()
     {
         $this->assertException(
-            \Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
+            \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
             sprintf('Expected %s, got %s', GeoJson\Feature\FeatureCollection::class, GeoJson\Geometry\Point::class)
         );
         GeometryCollection::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');

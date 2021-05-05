@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Types;
+namespace Nashgao\HyperfMySQLSpatial\Types;
 
 use GeoIO\WKB\Parser\Parser;
 use GeoJson\GeoJson;
-use Grimzy\LaravelMysqlSpatial\Exceptions\UnknownWKTTypeException;
 use Hyperf\Utils\Contracts\Jsonable;
+use Nashgao\HyperfMySQLSpatial\Exceptions\UnknownWKTTypeException;
 
 abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializable
 {
@@ -111,7 +111,7 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
         }
 
         /** @var Geometry $type */
-        $type = '\Grimzy\LaravelMysqlSpatial\Types\\' . $geoJson->getType();
+        $type = '\Nashgao\HyperfMySQLSpatial\Types\\' . $geoJson->getType();
 
         return $type::fromJson($geoJson);
     }

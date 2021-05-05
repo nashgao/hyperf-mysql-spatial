@@ -1,9 +1,15 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\MysqlConnection;
-use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
-use Grimzy\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
+use Nashgao\HyperfMySQLSpatial\Schema\Grammars\MySqlGrammar;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class MySqlGrammarBaseTest extends BaseTestCase
 {
     public function testAddingGeometry()

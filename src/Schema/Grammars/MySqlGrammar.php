@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Schema\Grammars;
+namespace Nashgao\HyperfMySQLSpatial\Schema\Grammars;
 
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Schema\Grammars\MySqlGrammar as HyperfMySQLGrammar;

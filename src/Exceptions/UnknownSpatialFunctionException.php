@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Exceptions;
+namespace Nashgao\HyperfMySQLSpatial\Exceptions;
 
 class UnknownSpatialFunctionException extends \RuntimeException
 {

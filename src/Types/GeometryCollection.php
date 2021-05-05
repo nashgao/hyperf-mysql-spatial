@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Types;
+namespace Nashgao\HyperfMySQLSpatial\Types;
 
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use GeoJson\Feature\FeatureCollection;
 use GeoJson\GeoJson;
-use Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 use Hyperf\Utils\Contracts\Arrayable;
 use InvalidArgumentException;
 use IteratorAggregate;
+use Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException;
 
 class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAccess, Arrayable, Countable
 {

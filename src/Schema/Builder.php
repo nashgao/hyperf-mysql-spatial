@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Schema;
+namespace Nashgao\HyperfMySQLSpatial\Schema;
 
 use Closure;
 use Hyperf\Database\Schema\MySqlBuilder;

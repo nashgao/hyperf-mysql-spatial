@@ -1,9 +1,15 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\MultiLineString;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\Types\LineString;
+use Nashgao\HyperfMySQLSpatial\Types\MultiLineString;
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class MultiLineStringTest extends BaseTestCase
 {
     public function testFromWKT()
@@ -46,7 +52,7 @@ class MultiLineStringTest extends BaseTestCase
     public function testInvalidGeoJsonException()
     {
         $this->assertException(
-            \Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
+            \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
             sprintf('Expected %s, got %s', GeoJson\Geometry\MultiLineString::class, GeoJson\Geometry\Point::class)
         );
         MultiLineString::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
@@ -64,7 +70,7 @@ class MultiLineStringTest extends BaseTestCase
     {
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiLineString must contain at least 1 entry'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiLineString must contain at least 1 entry'
         );
         $multilinestring = new MultiLineString([]);
     }
@@ -73,7 +79,7 @@ class MultiLineStringTest extends BaseTestCase
     {
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiLineString must be a collection of Grimzy\LaravelMysqlSpatial\Types\LineString'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiLineString must be a collection of Nashgao\HyperfMySQLSpatial\Types\LineString'
         );
         $multilinestring = new MultiLineString([
             new LineString([new Point(0, 0), new Point(1, 1)]),
@@ -109,7 +115,7 @@ class MultiLineStringTest extends BaseTestCase
         // assert invalid
         $this->assertException(
             InvalidArgumentException::class,
-            'Grimzy\LaravelMysqlSpatial\Types\MultiLineString must be a collection of Grimzy\LaravelMysqlSpatial\Types\LineString'
+            'Nashgao\HyperfMySQLSpatial\Types\MultiLineString must be a collection of Nashgao\HyperfMySQLSpatial\Types\LineString'
         );
         $multilinestring[] = 1;
     }

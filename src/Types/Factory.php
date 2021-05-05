@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Types;
+namespace Nashgao\HyperfMySQLSpatial\Types;
 
 class Factory implements \GeoIO\Factory
 {

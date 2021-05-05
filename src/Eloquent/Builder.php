@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Grimzy\LaravelMysqlSpatial\Eloquent;
+namespace Nashgao\HyperfMySQLSpatial\Eloquent;
 
-use Grimzy\LaravelMysqlSpatial\Types\GeometryInterface;
 use Hyperf\Database\Model\Builder as HyperfBuilder;
+use Nashgao\HyperfMySQLSpatial\Types\GeometryInterface;
 
 class Builder extends HyperfBuilder
 {

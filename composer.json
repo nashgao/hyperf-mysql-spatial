@@ -1,17 +1,16 @@
 {
-    "name": "grimzy/laravel-mysql-spatial",
-    "description": "MySQL spatial data types extension for Laravel.",
-    "scripts": {
-        "test": "phpunit -c phpunit.xml.dist",
-        "test:unit": "phpunit -c phpunit.xml.dist --testsuite unit",
-        "test:integration": "phpunit -c phpunit.xml.dist --testsuite integration"
-    },
+    "name": "nashgao/hyperf-mysql-spatial",
+    "description": "MySQL spatial data types extension for Hyperf.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Joseph Estefane",
             "email": "estefanejoe@gmail.com"
+        },
+        {
+            "name": "nash gao",
+            "email": "nashgao1992@gmail.com"
         }
     ],
     "require": {
@@ -27,12 +26,11 @@
         "doctrine/dbal": "^2.5",
         "friendsofphp/php-cs-fixer": "^v2.1.04",
         "phpstan/phpstan": "^0.12",
-        "laravel/browser-kit-testing": "^2.0",
         "mockery/mockery": "^1.3"
     },
     "autoload": {
         "psr-4": {
-            "Grimzy\\LaravelMysqlSpatial\\": "src/"
+            "Nashgao\\HyperfMySQLSpatial\\": "src"
         }
     },
     "autoload-dev" : {
@@ -43,6 +41,9 @@
     },
     "scripts": {
         "cs-fix": "php-cs-fixer fix $1",
-        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src"
+        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
+        "test": "phpunit -c phpunit.xml.dist",
+        "test:unit": "phpunit -c phpunit.xml.dist --testsuite unit",
+        "test:integration": "phpunit -c phpunit.xml.dist --testsuite integration"
     }
 }

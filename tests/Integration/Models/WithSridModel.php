@@ -1,23 +1,25 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+declare(strict_types=1);
+
 use Illuminate\Database\Eloquent\Model;
+use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
 
 /**
  * Class WithSridModel.
  *
  * @property int                                          id
- * @property \Grimzy\LaravelMysqlSpatial\Types\Point      location
- * @property \Grimzy\LaravelMysqlSpatial\Types\LineString line
- * @property \Grimzy\LaravelMysqlSpatial\Types\LineString shape
+ * @property \Nashgao\HyperfMySQLSpatial\Types\Point      location
+ * @property \Nashgao\HyperfMySQLSpatial\Types\LineString line
+ * @property \Nashgao\HyperfMySQLSpatial\Types\LineString shape
  */
 class WithSridModel extends Model
 {
     use SpatialTrait;
 
+    public $timestamps = false;
+
     protected $table = 'with_srid';
 
     protected $spatialFields = ['location', 'line'];
-
-    public $timestamps = false;
 }

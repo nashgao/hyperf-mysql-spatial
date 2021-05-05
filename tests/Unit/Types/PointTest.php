@@ -1,7 +1,13 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\Point;
+declare(strict_types=1);
 
+use Nashgao\HyperfMySQLSpatial\Types\Point;
+
+/**
+ * @internal
+ * @coversNothing
+ */
 class PointTest extends BaseTestCase
 {
     public function testFromWKT()
@@ -70,7 +76,7 @@ class PointTest extends BaseTestCase
     public function testInvalidGeoJsonException()
     {
         $this->assertException(
-            \Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
+            \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
             'Expected GeoJson\Geometry\Point, got GeoJson\Geometry\LineString'
         );
         Point::fromJson('{"type": "LineString","coordinates":[[1,1],[2,2]]}');

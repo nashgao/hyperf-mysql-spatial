@@ -1,7 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class MigrationTest extends IntegrationBaseTestCase
 {
     protected $migrations = [
