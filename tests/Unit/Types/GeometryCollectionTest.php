@@ -120,7 +120,7 @@ class GeometryCollectionTest extends BaseTestCase
 
         // assert invalid
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             'Nashgao\HyperfMySQLSpatial\Types\GeometryCollection must be a collection of Nashgao\HyperfMySQLSpatial\Types\GeometryInterface'
         );
         $geometryCollection[] = 1;
@@ -140,7 +140,7 @@ class GeometryCollectionTest extends BaseTestCase
     {
         $this->assertException(
             \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
-            sprintf('Expected %s, got %s', GeoJson\Feature\FeatureCollection::class, GeoJson\Geometry\Point::class)
+            sprintf('Expected %s, got %s', \GeoJson\Feature\FeatureCollection::class, GeoJson\Geometry\Point::class)
         );
         GeometryCollection::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
