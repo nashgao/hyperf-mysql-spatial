@@ -53,7 +53,7 @@ class MultiPointTest extends BaseTestCase
     {
         $this->assertException(
             \Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException::class,
-            sprintf('Expected %s, got %s', GeoJson\Geometry\MultiPoint::class, GeoJson\Geometry\Point::class)
+            sprintf('Expected %s, got %s', \GeoJson\Geometry\MultiPoint::class, \GeoJson\Geometry\Point::class)
         );
         MultiPoint::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
@@ -71,7 +71,7 @@ class MultiPointTest extends BaseTestCase
     public function testInvalidArgumentExceptionAtLeastOneEntry()
     {
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             'Nashgao\HyperfMySQLSpatial\Types\MultiPoint must contain at least 1 entry'
         );
         $multipoint = new MultiPoint([]);
@@ -80,7 +80,7 @@ class MultiPointTest extends BaseTestCase
     public function testInvalidArgumentExceptionNotArrayOfLineString()
     {
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             'Nashgao\HyperfMySQLSpatial\Types\MultiPoint must be a collection of Nashgao\HyperfMySQLSpatial\Types\Point'
         );
         $multipoint = new MultiPoint([
@@ -106,7 +106,7 @@ class MultiPointTest extends BaseTestCase
 
         // assert invalid
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             'Nashgao\HyperfMySQLSpatial\Types\MultiPoint must be a collection of Nashgao\HyperfMySQLSpatial\Types\Point'
         );
         $multipoint[] = 1;
@@ -154,7 +154,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals($point3, $multipoint[2]);
 
         $this->assertException(
-            InvalidArgumentException::class,
+            \InvalidArgumentException::class,
             '$index is greater than the size of the array'
         );
         $multipoint->insertPoint(100, new Point(100, 100));
