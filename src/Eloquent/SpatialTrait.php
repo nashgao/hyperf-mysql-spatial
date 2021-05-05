@@ -66,7 +66,7 @@ trait SpatialTrait
     /**
      * Create a new Eloquent query builder for the model.
      */
-    public function newModelBuilder(\Hyperf\Database\Query\Builder $query): Builder
+    public function newModelBuilder($query): Builder
     {
         return new Builder($query);
     }
