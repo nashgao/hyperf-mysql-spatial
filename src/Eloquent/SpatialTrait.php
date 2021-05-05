@@ -39,12 +39,12 @@ trait SpatialTrait
      *
      * @var array
      *
-     * protected $spatialFields = [];
+     * protected array $spatialFields = [];
      */
 
-    public $geometries = [];
+    public array $geometries = [];
 
-    protected $stRelations = [
+    protected array $stRelations = [
         'within',
         'crosses',
         'contains',
@@ -55,12 +55,9 @@ trait SpatialTrait
         'touches',
     ];
 
-    protected $stOrderFunctions = [
+    protected array $stOrderFunctions = [
         'distance',
         'distance_sphere',
-    ];
-
-    protected array $spatialFields = [
     ];
 
     /**
