@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
@@ -10,10 +12,13 @@ class LineString extends PointCollection
 {
     /**
      * The minimum number of items required to create this collection.
-     *
-     * @var int
      */
     protected int $minimumCollectionItems = 2;
+
+    public function __toString(): string
+    {
+        return $this->toPairList();
+    }
 
     public function toWKT(): string
     {
@@ -37,19 +42,14 @@ class LineString extends PointCollection
         return new static($points, $srid);
     }
 
-    public function __toString():string
-    {
-        return $this->toPairList();
-    }
-
-    public static function fromJson($geoJson):self
+    public static function fromJson($geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonLineString::class)) {
-            throw new InvalidGeoJsonException('Expected '.GeoJsonLineString::class.', got '.get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonLineString::class)) {
+            throw new InvalidGeoJsonException('Expected ' . GeoJsonLineString::class . ', got ' . get_class($geoJson));
         }
 
         $set = [];
@@ -65,7 +65,7 @@ class LineString extends PointCollection
      *
      * @return GeoJsonLineString
      */
-    public function jsonSerialize(): GeoJsonLineString
+    public function jsonSerialize(): \GeoJson\Geometry\Geometry
     {
         $points = [];
         foreach ($this->items as $point) {

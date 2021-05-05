@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 class Factory implements \GeoIO\Factory

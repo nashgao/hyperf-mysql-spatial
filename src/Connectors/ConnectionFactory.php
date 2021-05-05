@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Connectors;
 
 use Grimzy\LaravelMysqlSpatial\MysqlConnection;
@@ -10,11 +12,10 @@ use PDO;
 class ConnectionFactory extends HyperfConnectionFactory
 {
     /**
-     * @param string       $driver
+     * @param string $driver
      * @param \Closure|PDO $connection
-     * @param string       $database
-     * @param string       $prefix
-     * @param array        $config
+     * @param string $database
+     * @param string $prefix
      *
      * @return ConnectionInterface
      */

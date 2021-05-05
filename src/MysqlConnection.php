@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
@@ -35,19 +37,7 @@ class MysqlConnection extends HyperfMySQLConnection
     }
 
     /**
-     * Get the default schema grammar instance.
-     *
-     * @return Grammar
-     */
-    protected function getDefaultSchemaGrammar(): Grammar
-    {
-        return $this->withTablePrefix(new MySqlGrammar());
-    }
-
-    /**
      * Get a schema builder instance for the connection.
-     *
-     * @return Builder
      */
     public function getSchemaBuilder(): Builder
     {
@@ -56,5 +46,13 @@ class MysqlConnection extends HyperfMySQLConnection
         }
 
         return new Builder($this);
+    }
+
+    /**
+     * Get the default schema grammar instance.
+     */
+    protected function getDefaultSchemaGrammar(): Grammar
+    {
+        return $this->withTablePrefix(new MySqlGrammar());
     }
 }

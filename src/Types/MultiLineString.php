@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
@@ -10,17 +12,20 @@ class MultiLineString extends GeometryCollection
 {
     /**
      * The minimum number of items required to create this collection.
-     *
-     * @var int
      */
     protected int $minimumCollectionItems = 1;
 
     /**
      * The class of the items in the collection.
-     *
-     * @var string
      */
     protected string $collectionItemType = LineString::class;
+
+    public function __toString(): string
+    {
+        return implode(',', array_map(function (LineString $lineString) {
+            return sprintf('(%s)', (string) $lineString);
+        }, $this->getLineStrings()));
+    }
 
     public function getLineStrings(): array
     {
@@ -42,13 +47,6 @@ class MultiLineString extends GeometryCollection
         return new static($lineStrings, $srid);
     }
 
-    public function __toString(): string
-    {
-        return implode(',', array_map(function (LineString $lineString) {
-            return sprintf('(%s)', (string) $lineString);
-        }, $this->getLineStrings()));
-    }
-
     public function offsetSet($offset, $value)
     {
         $this->validateItemType($value);
@@ -62,8 +60,8 @@ class MultiLineString extends GeometryCollection
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonMultiLineString::class)) {
-            throw new InvalidGeoJsonException('Expected '.GeoJsonMultiLineString::class.', got '.get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonMultiLineString::class)) {
+            throw new InvalidGeoJsonException('Expected ' . GeoJsonMultiLineString::class . ', got ' . get_class($geoJson));
         }
 
         $set = [];
@@ -80,10 +78,8 @@ class MultiLineString extends GeometryCollection
 
     /**
      * Convert to GeoJson Point that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonMultiLineString
      */
-    public function jsonSerialize(): GeoJsonMultiLineString
+    public function jsonSerialize(): \GeoJson\Geometry\Geometry
     {
         $lineStrings = [];
 

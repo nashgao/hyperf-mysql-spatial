@@ -138,9 +138,8 @@ Then edit the model you just created. It must use the `SpatialTrait` and define 
 ```php
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
-
+use Hyperf\Database\Model\Model;
 /**
  * @property \Grimzy\LaravelMysqlSpatial\Types\Point   $location
  * @property \Grimzy\LaravelMysqlSpatial\Types\Polygon $area

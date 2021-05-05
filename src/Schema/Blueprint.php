@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Schema;
 
 use Hyperf\Database\Schema\Blueprint as HyperfBlueprint;
@@ -10,7 +12,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a geometry column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -23,7 +25,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a point column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -36,7 +38,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a linestring column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -49,7 +51,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a polygon column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -62,7 +64,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a multipoint column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -75,7 +77,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a multilinestring column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -88,7 +90,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a multipolygon column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -101,7 +103,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Add a geometrycollection column on the table.
      *
-     * @param string   $column
+     * @param string $column
      * @param null|int $srid
      *
      * @return Fluent
@@ -114,8 +116,8 @@ class Blueprint extends HyperfBlueprint
     /**
      * Specify a spatial index for the table.
      *
-     * @param string|array $columns
-     * @param string       $name
+     * @param array|string $columns
+     * @param string $name
      *
      * @return Fluent
      */
@@ -127,7 +129,7 @@ class Blueprint extends HyperfBlueprint
     /**
      * Indicate that the given index should be dropped.
      *
-     * @param string|array $index
+     * @param array|string $index
      *
      * @return Fluent
      */

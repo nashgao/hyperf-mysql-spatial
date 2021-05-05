@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Eloquent;
 
 use Grimzy\LaravelMysqlSpatial\Types\GeometryInterface;
-use \Hyperf\Database\Model\Builder as HyperfBuilder;
+use Hyperf\Database\Model\Builder as HyperfBuilder;
 
 class Builder extends HyperfBuilder
 {

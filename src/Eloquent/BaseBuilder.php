@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Eloquent;
 
 use Hyperf\Database\Query\Builder as QueryBuilder;

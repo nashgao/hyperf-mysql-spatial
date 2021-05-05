@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
@@ -19,8 +21,8 @@ class Polygon extends MultiLineString
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonPolygon::class)) {
-            throw new InvalidGeoJsonException('Expected '.GeoJsonPolygon::class.', got '.get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonPolygon::class)) {
+            throw new InvalidGeoJsonException('Expected ' . GeoJsonPolygon::class . ', got ' . get_class($geoJson));
         }
 
         $set = [];
@@ -37,10 +39,8 @@ class Polygon extends MultiLineString
 
     /**
      * Convert to GeoJson Polygon that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonPolygon
      */
-    public function jsonSerialize(): GeoJsonPolygon
+    public function jsonSerialize(): \GeoJson\Geometry\Geometry
     {
         $linearRings = [];
         foreach ($this->items as $lineString) {

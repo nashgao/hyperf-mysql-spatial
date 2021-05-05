@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
+use GeoJson\Feature\Feature;
 use GeoJson\GeoJson;
 use GeoJson\Geometry\Point as GeoJsonPoint;
 use Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
@@ -12,12 +15,17 @@ class Point extends Geometry
 
     protected float $lng;
 
-    public function __construct($lat, $lng, $srid = 0)
+    final public function __construct($lat, $lng, $srid = 0)
     {
         parent::__construct($srid);
 
         $this->lat = (float) $lat;
         $this->lng = (float) $lng;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getLng() . ' ' . $this->getLat();
     }
 
     public function getLat(): float
@@ -42,12 +50,12 @@ class Point extends Geometry
 
     public function toPair(): string
     {
-        return $this->getLng().' '.$this->getLat();
+        return $this->getLng() . ' ' . $this->getLat();
     }
 
     public static function fromPair($pair, $srid = 0): Point
     {
-        list($lng, $lat) = explode(' ', trim($pair, "\t\n\r \x0B()"));
+        [$lng, $lat] = explode(' ', trim($pair, "\t\n\r \x0B()"));
 
         return new static((float) $lat, (float) $lng, (int) $srid);
     }
@@ -62,13 +70,8 @@ class Point extends Geometry
         return static::fromPair($wktArgument, $srid);
     }
 
-    public function __toString():string
-    {
-        return $this->getLng().' '.$this->getLat();
-    }
-
     /**
-     * @param $geoJson  \GeoJson\Feature\Feature|string
+     * @param $geoJson  Feature|string
      *
      * @return Point
      */
@@ -78,8 +81,8 @@ class Point extends Geometry
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonPoint::class)) {
-            throw new InvalidGeoJsonException('Expected '.GeoJsonPoint::class.', got '.get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonPoint::class)) {
+            throw new InvalidGeoJsonException('Expected ' . GeoJsonPoint::class . ', got ' . get_class($geoJson));
         }
 
         $coordinates = $geoJson->getCoordinates();
@@ -92,7 +95,7 @@ class Point extends Geometry
      *
      * @return GeoJsonPoint
      */
-    public function jsonSerialize(): GeoJsonPoint
+    public function jsonSerialize(): \GeoJson\Geometry\Geometry
     {
         return new GeoJsonPoint([$this->getLng(), $this->getLat()]);
     }

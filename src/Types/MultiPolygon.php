@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
@@ -10,28 +12,24 @@ class MultiPolygon extends GeometryCollection
 {
     /**
      * The minimum number of items required to create this collection.
-     *
-     * @var int
      */
     protected int $minimumCollectionItems = 1;
 
     /**
      * The class of the items in the collection.
-     *
-     * @var string
      */
     protected string $collectionItemType = Polygon::class;
-
-    public function toWKT(): string
-    {
-        return sprintf('MULTIPOLYGON(%s)', (string) $this);
-    }
 
     public function __toString(): string
     {
         return implode(',', array_map(function (Polygon $polygon) {
             return sprintf('(%s)', (string) $polygon);
         }, $this->items));
+    }
+
+    public function toWKT(): string
+    {
+        return sprintf('MULTIPOLYGON(%s)', (string) $this);
     }
 
     public static function fromString($wktArgument, $srid = 0): self
@@ -49,44 +47,9 @@ class MultiPolygon extends GeometryCollection
      *
      * @return array|Polygon[]
      */
-    public function getPolygons():array
+    public function getPolygons(): array
     {
         return $this->items;
-    }
-
-    /**
-     * Make an array like this:
-     * "((0 0,4 0,4 4,0 4,0 0),(1 1,2 1,2 2,1 2,1 1",
-     * ")), ((",
-     * "-1 -1,-1 -2,-2 -2,-2 -1,-1 -1",
-     * ")), ((",
-     * "-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))".
-     *
-     * Into:
-     * "((0 0,4 0,4 4,0 4,0 0),(1 1,2 1,2 2,1 2,1 1))",
-     * "((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))",
-     * "((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))"
-     *
-     * @param array $parts
-     *
-     * @return array
-     */
-    protected static function assembleParts(array $parts): array
-    {
-        $polygons = [];
-        $count = count($parts);
-
-        for ($i = 0; $i < $count; $i++) {
-            if ($i % 2 !== 0) {
-                list($end, $start) = explode(',', $parts[$i]);
-                $polygons[$i - 1] .= $end;
-                $polygons[++$i] = $start.$parts[$i];
-            } else {
-                $polygons[] = $parts[$i];
-            }
-        }
-
-        return $polygons;
     }
 
     public function offsetSet($offset, $value)
@@ -102,8 +65,8 @@ class MultiPolygon extends GeometryCollection
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonMultiPolygon::class)) {
-            throw new InvalidGeoJsonException('Expected '.GeoJsonMultiPolygon::class.', got '.get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonMultiPolygon::class)) {
+            throw new InvalidGeoJsonException('Expected ' . GeoJsonMultiPolygon::class . ', got ' . get_class($geoJson));
         }
 
         $set = [];
@@ -124,8 +87,6 @@ class MultiPolygon extends GeometryCollection
 
     /**
      * Convert to GeoJson MultiPolygon that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonMultiPolygon
      */
     public function jsonSerialize(): GeoJsonMultiPolygon
     {
@@ -135,5 +96,36 @@ class MultiPolygon extends GeometryCollection
         }
 
         return new GeoJsonMultiPolygon($polygons);
+    }
+
+    /**
+     * Make an array like this:
+     * "((0 0,4 0,4 4,0 4,0 0),(1 1,2 1,2 2,1 2,1 1",
+     * ")), ((",
+     * "-1 -1,-1 -2,-2 -2,-2 -1,-1 -1",
+     * ")), ((",
+     * "-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))".
+     *
+     * Into:
+     * "((0 0,4 0,4 4,0 4,0 0),(1 1,2 1,2 2,1 2,1 1))",
+     * "((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))",
+     * "((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1))"
+     */
+    protected static function assembleParts(array $parts): array
+    {
+        $polygons = [];
+        $count = count($parts);
+
+        for ($i = 0; $i < $count; ++$i) {
+            if ($i % 2 !== 0) {
+                [$end, $start] = explode(',', $parts[$i]);
+                $polygons[$i - 1] .= $end;
+                $polygons[++$i] = $start . $parts[$i];
+            } else {
+                $polygons[] = $parts[$i];
+            }
+        }
+
+        return $polygons;
     }
 }

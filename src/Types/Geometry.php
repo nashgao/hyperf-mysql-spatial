@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoIO\WKB\Parser\Parser;
@@ -36,7 +38,7 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
         $this->srid = (int) $srid;
     }
 
-    public static function getWKTArgument($value):string
+    public static function getWKTArgument($value): string
     {
         $left = strpos($value, '(');
         $right = strrpos($value, ')');
@@ -65,7 +67,7 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
             case 'GEOMETRYCOLLECTION':
                 return GeometryCollection::class;
             default:
-                throw new UnknownWKTTypeException('Type was '.$type);
+                throw new UnknownWKTTypeException('Type was ' . $type);
         }
     }
 
@@ -108,7 +110,8 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
             $geoJson = $geoJson->getGeometry();
         }
 
-        $type = '\Grimzy\LaravelMysqlSpatial\Types\\'.$geoJson->getType();
+        /** @var Geometry $type */
+        $type = '\Grimzy\LaravelMysqlSpatial\Types\\' . $geoJson->getType();
 
         return $type::fromJson($geoJson);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use ArrayAccess;
@@ -9,8 +11,6 @@ abstract class PointCollection extends GeometryCollection
 {
     /**
      * The class of the items in the collection.
-     *
-     * @var string
      */
     protected string $collectionItemType = Point::class;
 
