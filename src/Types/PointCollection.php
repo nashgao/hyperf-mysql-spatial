@@ -14,7 +14,7 @@ abstract class PointCollection extends GeometryCollection
      */
     protected string $collectionItemType = Point::class;
 
-    public function toPairList()
+    public function toPairList(): string
     {
         return implode(',', array_map(function (Point $point) {
             return $point->toPair();
@@ -29,16 +29,14 @@ abstract class PointCollection extends GeometryCollection
     }
 
     /**
-     * @return array|\Nashgao\HyperfMySQLSpatial\Types\Point[]
+     * @return array|Point[]
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return $this->items;
     }
 
     /**
-     * @param \Nashgao\HyperfMySQLSpatial\Types\Point $point
-     *
      * @deprecated 2.1.0 Use array_unshift($multipoint, $point); instead
      * @see array_unshift
      * @see ArrayAccess
@@ -49,8 +47,6 @@ abstract class PointCollection extends GeometryCollection
     }
 
     /**
-     * @param \Nashgao\HyperfMySQLSpatial\Types\Point $point
-     *
      * @deprecated 2.1.0 Use $multipoint[] = $point; instead
      * @see ArrayAccess
      */
@@ -61,7 +57,6 @@ abstract class PointCollection extends GeometryCollection
 
     /**
      * @param $index
-     * @param \Nashgao\HyperfMySQLSpatial\Types\Point $point
      *
      * @deprecated 2.1.0 Use array_splice($multipoint, $index, 0, [$point]); instead
      * @see array_splice

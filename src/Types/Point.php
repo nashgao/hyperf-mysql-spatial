@@ -15,7 +15,7 @@ class Point extends Geometry
 
     protected float $lng;
 
-    final public function __construct($lat, $lng, $srid = 0)
+    final public function __construct(float $lat, float $lng, $srid = 0)
     {
         parent::__construct($srid);
 
