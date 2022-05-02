@@ -69,7 +69,7 @@ trait SpatialTrait
         return new Builder($query);
     }
 
-    public function setRawAttributes(array $attributes, $sync = false)
+    public function setRawAttributes(array $attributes, bool $sync = false): static
     {
         $spatial_fields = $this->getSpatialFields();
 
