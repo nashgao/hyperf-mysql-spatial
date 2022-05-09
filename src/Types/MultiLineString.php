@@ -47,7 +47,7 @@ class MultiLineString extends GeometryCollection
         return new static($lineStrings, $srid);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateItemType($value);
 
