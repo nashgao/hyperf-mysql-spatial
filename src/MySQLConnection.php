@@ -10,7 +10,7 @@ use Hyperf\Database\MySqlConnection as HyperfMySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Schema\Builder;
 use Nashgao\HyperfMySQLSpatial\Schema\Grammars\MySqlGrammar;
 
-class MysqlConnection extends HyperfMySQLConnection
+class MySQLConnection extends HyperfMySQLConnection
 {
     public function __construct($pdo, $database = '', $tablePrefix = '', array $config = [])
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\MySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
 use Nashgao\HyperfMySQLSpatial\Schema\Grammars\MySqlGrammar;
 
@@ -197,7 +197,7 @@ class MySqlGrammarBaseTest extends BaseTestCase
      */
     protected function getConnection()
     {
-        return Mockery::mock(MysqlConnection::class);
+        return Mockery::mock(MySQLConnection::class);
     }
 
     protected function getGrammar()

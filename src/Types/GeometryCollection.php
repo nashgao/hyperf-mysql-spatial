@@ -39,7 +39,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @throws InvalidArgumentException
      */
-    final public function __construct(array $geometries, $srid = 0)
+    final public function __construct(array $geometries, int $srid = 0)
     {
         parent::__construct($srid);
 
@@ -111,8 +111,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         }
     }
 
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->items[$offset]);
     }
@@ -172,7 +171,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @see $minimumCollectionItems
      */
-    protected function validateItemCount(array $items)
+    protected function validateItemCount(array $items): void
     {
         if (count($items) < $this->minimumCollectionItems) {
             $entries = $this->minimumCollectionItems === 1 ? 'entry' : 'entries';
@@ -193,7 +192,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @see $collectionItemType
      */
-    protected function validateItemType($item)
+    protected function validateItemType($item): void
     {
         if (! $item instanceof $this->collectionItemType) {
             throw new InvalidArgumentException(sprintf(

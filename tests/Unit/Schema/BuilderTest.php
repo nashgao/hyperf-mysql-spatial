@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Schema;
 
 use Mockery;
-use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\MySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Schema\Blueprint;
 use Nashgao\HyperfMySQLSpatial\Schema\Builder;
 use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
@@ -18,7 +18,7 @@ class BuilderTest extends BaseTestCase
 {
     public function testReturnsCorrectBlueprint()
     {
-        $connection = Mockery::mock(MysqlConnection::class);
+        $connection = Mockery::mock(MySQLConnection::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn(null);
 
         $mock = Mockery::mock(Builder::class, [$connection]);

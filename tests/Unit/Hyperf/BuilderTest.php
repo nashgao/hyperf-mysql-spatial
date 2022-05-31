@@ -11,7 +11,7 @@ use Mockery;
 use Nashgao\HyperfMySQLSpatial\Eloquent\Builder;
 use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialExpression;
 use Nashgao\HyperfMySQLSpatial\Eloquent\SpatialTrait;
-use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\MySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
@@ -29,7 +29,7 @@ class BuilderTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $connection = Mockery::mock(MysqlConnection::class)->makePartial();
+        $connection = Mockery::mock(MySQLConnection::class)->makePartial();
         $grammar = Mockery::mock(MySqlGrammar::class)->makePartial();
         $this->queryBuilder = Mockery::mock(QueryBuilder::class, [$connection, $grammar]);
 

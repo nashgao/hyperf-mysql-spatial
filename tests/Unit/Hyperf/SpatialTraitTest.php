@@ -8,7 +8,7 @@ use Hyperf\Database\Model\Model;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
 use Nashgao\HyperfMySQLSpatial\Exceptions\SpatialFieldsNotDefinedException;
-use Nashgao\HyperfMySQLSpatial\MysqlConnection;
+use Nashgao\HyperfMySQLSpatial\MySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
 
@@ -551,7 +551,7 @@ class TestModel extends Model
             static::$pdo = m::mock('TestPDO')->makePartial();
         }
 
-        return new MysqlConnection(static::$pdo);
+        return new MySQLConnection(static::$pdo);
     }
 
     public function testrelatedmodels()
