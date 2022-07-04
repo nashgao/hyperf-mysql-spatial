@@ -322,7 +322,7 @@ class SpatialTest extends IntegrationBaseTestCase
         $this->assertEquals($loc1->location, $c[2]->location);
     }
 
-    //public function testBounding() {
+    // public function testBounding() {
     //    $point = new Point(0, 0);
     //
     //    $linestring1 = \Nashgao\HyperfMySQLSpatial\Types\LineString::fromWkt("LINESTRING(1 1, 2 2)");
@@ -352,5 +352,5 @@ class SpatialTest extends IntegrationBaseTestCase
     //    $this->assertFalse($result->contains($geo2));
     //    $this->assertTrue($result->contains($geo3));
     //
-    //}
+    // }
 }

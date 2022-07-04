@@ -10,7 +10,7 @@ use Hyperf\Utils\Fluent;
 
 class MySqlGrammar extends HyperfMySQLGrammar
 {
-    const COLUMN_MODIFIER_SRID = 'Srid';
+    public const COLUMN_MODIFIER_SRID = 'Srid';
 
     public function __construct()
     {

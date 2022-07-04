@@ -35,7 +35,6 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
 
     /**
      * @param GeometryInterface[] $geometries
-     * @param int $srid
      *
      * @throws InvalidArgumentException
      */
@@ -62,10 +61,10 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
 
     public function toWKT(): string
     {
-        return sprintf('GEOMETRYCOLLECTION(%s)', (string) $this);
+        return sprintf('GEOMETRYCOLLECTION(%s)', $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0): self
+    public static function fromString(string $wktArgument, int $srid = 0): self
     {
         if (empty($wktArgument)) {
             return new static([]);
@@ -90,17 +89,17 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return new ArrayIterator($this->items);
     }
 
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->items[$offset]);
     }
 
-    public function offsetGet($offset): ?GeometryInterface
+    public function offsetGet(mixed $offset): ?GeometryInterface
     {
         return $this->offsetExists($offset) ? $this->items[$offset] : null;
     }
 
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->validateItemType($value);
 
@@ -111,7 +110,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         }
     }
 
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->items[$offset]);
     }
@@ -121,7 +120,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return count($this->items);
     }
 
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
@@ -157,7 +156,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     /**
      * Checks whether the items are valid to create this collection.
      */
-    protected function validateItems(array $items)
+    protected function validateItems(array $items): void
     {
         $this->validateItemCount($items);
 

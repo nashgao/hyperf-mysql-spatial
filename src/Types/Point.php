@@ -19,8 +19,8 @@ class Point extends Geometry
     {
         parent::__construct($srid);
 
-        $this->lat = (float) $lat;
-        $this->lng = (float) $lng;
+        $this->lat = $lat;
+        $this->lng = $lng;
     }
 
     public function __toString(): string
@@ -33,7 +33,7 @@ class Point extends Geometry
         return $this->lat;
     }
 
-    public function setLat($lat)
+    public function setLat(string|float|int $lat)
     {
         $this->lat = (float) $lat;
     }
@@ -43,7 +43,7 @@ class Point extends Geometry
         return $this->lng;
     }
 
-    public function setLng($lng)
+    public function setLng(string|float|int $lng)
     {
         $this->lng = (float) $lng;
     }
@@ -53,7 +53,7 @@ class Point extends Geometry
         return $this->getLng() . ' ' . $this->getLat();
     }
 
-    public static function fromPair($pair, $srid = 0): Point
+    public static function fromPair(string $pair, int $srid = 0): Point
     {
         [$lng, $lat] = explode(' ', trim($pair, "\t\n\r \x0B()"));
 
@@ -62,10 +62,10 @@ class Point extends Geometry
 
     public function toWKT(): string
     {
-        return sprintf('POINT(%s)', (string) $this);
+        return sprintf('POINT(%s)', $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0): Point
+    public static function fromString(string $wktArgument, int $srid = 0): Point
     {
         return static::fromPair($wktArgument, $srid);
     }
@@ -75,7 +75,7 @@ class Point extends Geometry
      *
      * @return Point
      */
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

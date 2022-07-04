@@ -21,7 +21,7 @@ abstract class PointCollection extends GeometryCollection
         }, $this->items));
     }
 
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->validateItemType($value);
 
@@ -41,7 +41,7 @@ abstract class PointCollection extends GeometryCollection
      * @see array_unshift
      * @see ArrayAccess
      */
-    public function prependPoint(Point $point)
+    public function prependPoint(Point $point): void
     {
         array_unshift($this->items, $point);
     }
@@ -50,19 +50,17 @@ abstract class PointCollection extends GeometryCollection
      * @deprecated 2.1.0 Use $multipoint[] = $point; instead
      * @see ArrayAccess
      */
-    public function appendPoint(Point $point)
+    public function appendPoint(Point $point): void
     {
         $this->items[] = $point;
     }
 
     /**
-     * @param $index
-     *
      * @deprecated 2.1.0 Use array_splice($multipoint, $index, 0, [$point]); instead
      * @see array_splice
      * @see ArrayAccess
      */
-    public function insertPoint($index, Point $point)
+    public function insertPoint(int $index, Point $point): void
     {
         if (count($this->items) - 1 < $index) {
             throw new InvalidArgumentException('$index is greater than the size of the array');

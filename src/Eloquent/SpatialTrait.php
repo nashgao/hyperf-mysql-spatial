@@ -281,7 +281,7 @@ trait SpatialTrait
     {
         foreach ($this->attributes as $key => $value) {
             if ($value instanceof GeometryInterface) {
-                $this->geometries[$key] = $value; //Preserve the geometry objects prior to the insert
+                $this->geometries[$key] = $value; // Preserve the geometry objects prior to the insert
                 $this->attributes[$key] = new SpatialExpression($value);
             }
         }
@@ -289,9 +289,9 @@ trait SpatialTrait
         $insert = parent::performInsert($query, $options);
 
         foreach ($this->geometries as $key => $value) {
-            $this->attributes[$key] = $value; //Retrieve the geometry objects so they can be used in the model
+            $this->attributes[$key] = $value; // Retrieve the geometry objects so they can be used in the model
         }
 
-        return $insert; //Return the result of the parent insert
+        return $insert; // Return the result of the parent insert
     }
 }

@@ -13,7 +13,6 @@ class Blueprint extends HyperfBlueprint
      * Add a geometry column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function geometry($column, int $srid = null): Fluent
     {
@@ -35,7 +34,6 @@ class Blueprint extends HyperfBlueprint
      * Add a linestring column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function lineString($column, int $srid = null): Fluent
     {
@@ -46,7 +44,6 @@ class Blueprint extends HyperfBlueprint
      * Add a polygon column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function polygon($column, int $srid = null): Fluent
     {
@@ -57,7 +54,6 @@ class Blueprint extends HyperfBlueprint
      * Add a multipoint column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function multiPoint($column, int $srid = null): Fluent
     {
@@ -68,7 +64,6 @@ class Blueprint extends HyperfBlueprint
      * Add a multilinestring column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function multiLineString($column, int $srid = null): Fluent
     {
@@ -79,7 +74,6 @@ class Blueprint extends HyperfBlueprint
      * Add a multipolygon column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function multiPolygon($column, int $srid = null): Fluent
     {
@@ -90,7 +84,6 @@ class Blueprint extends HyperfBlueprint
      * Add a geometrycollection column on the table.
      *
      * @param string $column
-     * @param int|null $srid
      */
     public function geometryCollection($column, int $srid = null): Fluent
     {

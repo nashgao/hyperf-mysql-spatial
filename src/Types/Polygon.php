@@ -12,10 +12,10 @@ class Polygon extends MultiLineString
 {
     public function toWKT(): string
     {
-        return sprintf('POLYGON(%s)', (string) $this);
+        return sprintf('POLYGON(%s)', $this);
     }
 
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

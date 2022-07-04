@@ -34,10 +34,10 @@ class MultiLineString extends GeometryCollection
 
     public function toWKT(): string
     {
-        return sprintf('MULTILINESTRING(%s)', (string) $this);
+        return sprintf('MULTILINESTRING(%s)', $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0): self
+    public static function fromString(string $wktArgument, int $srid = 0): self
     {
         $str = preg_split('/\)\s*,\s*\(/', substr(trim($wktArgument), 1, -1));
         $lineStrings = array_map(function ($data) {
@@ -47,14 +47,14 @@ class MultiLineString extends GeometryCollection
         return new static($lineStrings, $srid);
     }
 
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->validateItemType($value);
 
         parent::offsetSet($offset, $value);
     }
 
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

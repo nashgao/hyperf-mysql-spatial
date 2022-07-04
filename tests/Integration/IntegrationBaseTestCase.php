@@ -27,9 +27,9 @@ abstract class IntegrationBaseTestCase extends TestCase
             (new $migrationClass())->up();
         });
 
-        //\DB::listen(function($sql) {
+        // \DB::listen(function($sql) {
         //    var_dump($sql);
-        //});
+        // });
     }
 
     public function tearDown(): void

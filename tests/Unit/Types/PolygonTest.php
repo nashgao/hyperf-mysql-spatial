@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Nashgao\HyperfMySQLSpatial\Test\Unit\Types;
 
+use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 use Nashgao\HyperfMySQLSpatial\Types\LineString;
 use Nashgao\HyperfMySQLSpatial\Types\Point;
 use Nashgao\HyperfMySQLSpatial\Types\Polygon;
-
-
-use Nashgao\HyperfMySQLSpatial\Test\Unit\BaseTestCase;
 
 /**
  * @internal

@@ -24,17 +24,17 @@ class MultiPoint extends PointCollection
 
     public function toWKT(): string
     {
-        return sprintf('MULTIPOINT(%s)', (string) $this);
+        return sprintf('MULTIPOINT(%s)', $this);
     }
 
-    public static function fromWkt($wkt, $srid = 0)
+    public static function fromWkt(string $wkt, int $srid = 0)
     {
         $wktArgument = Geometry::getWKTArgument($wkt);
 
         return static::fromString($wktArgument, $srid);
     }
 
-    public static function fromString($wktArgument, $srid = 0): self
+    public static function fromString(string $wktArgument, int $srid = 0): self
     {
         $matches = [];
         preg_match_all('/\(\s*(\d+\s+\d+)\s*\)/', trim($wktArgument), $matches);
@@ -46,7 +46,7 @@ class MultiPoint extends PointCollection
         return new static($points, $srid);
     }
 
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

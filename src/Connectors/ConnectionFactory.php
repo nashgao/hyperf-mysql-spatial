@@ -15,8 +15,6 @@ class ConnectionFactory extends HyperfConnectionFactory
      * @param \Closure|\PDO $connection
      * @param string $database
      * @param string $prefix
-     * @param array $config
-     * @return MySQLConnection|ConnectionInterface
      */
     protected function createConnection($driver, $connection, $database, $prefix = '', array $config = []): MySQLConnection|ConnectionInterface
     {

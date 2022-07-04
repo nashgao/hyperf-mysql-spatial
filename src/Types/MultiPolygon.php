@@ -23,16 +23,16 @@ class MultiPolygon extends GeometryCollection
     public function __toString(): string
     {
         return implode(',', array_map(function (Polygon $polygon) {
-            return sprintf('(%s)', (string) $polygon);
+            return sprintf('(%s)', $polygon);
         }, $this->items));
     }
 
     public function toWKT(): string
     {
-        return sprintf('MULTIPOLYGON(%s)', (string) $this);
+        return sprintf('MULTIPOLYGON(%s)', $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0): self
+    public static function fromString(string $wktArgument, int $srid = 0): self
     {
         $parts = preg_split('/(\)\s*\)\s*,\s*\(\s*\()/', $wktArgument, -1, PREG_SPLIT_DELIM_CAPTURE);
         $polygons = static::assembleParts($parts);
@@ -52,14 +52,14 @@ class MultiPolygon extends GeometryCollection
         return $this->items;
     }
 
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->validateItemType($value);
 
         parent::offsetSet($offset, $value);
     }
 
-    public static function fromJson($geoJson): self
+    public static function fromJson(string|GeoJson $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

@@ -18,7 +18,8 @@
         "hyperf/database": "~3.0 | ~2.2.0",
         "hyperf/db-connection": "~3.0 | ~2.2.0",
         "geo-io/wkb-parser": "^1.0",
-        "jmikola/geojson": "^1.0"
+        "jmikola/geojson": "^1.0",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "swoole/ide-helper": "~4.6",
@@ -42,7 +43,6 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "cs-fix": "php-cs-fixer fix $1",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
