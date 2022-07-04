@@ -11,7 +11,7 @@ class Factory implements \GeoIO\Factory
 {
     public function createPoint(Dimension $dimension, ?int $srid, ?Coordinates $coordinates): Point
     {
-        return new Point($coordinates['y'], $coordinates['x'], $srid ?? 0);
+        return new Point($coordinates->y, $coordinates->x, $srid ?? 0);
     }
 
     public function createLineString(Dimension $dimension, ?int $srid, iterable $points): LineString
