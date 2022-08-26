@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Nashgao\HyperfMySQLSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
-use Hyperf\Database\Grammar;
 use Hyperf\Database\MySqlConnection as HyperfMySQLConnection;
 use Nashgao\HyperfMySQLSpatial\Schema\Builder;
 use Nashgao\HyperfMySQLSpatial\Schema\Grammars\MySqlGrammar;
@@ -51,8 +50,8 @@ class MySQLConnection extends HyperfMySQLConnection
     /**
      * Get the default schema grammar instance.
      */
-    protected function getDefaultSchemaGrammar(): Grammar
-    {
+    protected function getDefaultSchemaGrammar(): MySqlGrammar
+{
         return $this->withTablePrefix(new MySqlGrammar());
     }
 }
