@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Nashgao\HyperfMySQLSpatial\Types;
 
 use ArrayAccess;
-use InvalidArgumentException;
 
 abstract class PointCollection extends GeometryCollection
 {
@@ -63,7 +62,7 @@ abstract class PointCollection extends GeometryCollection
     public function insertPoint(int $index, Point $point): void
     {
         if (count($this->items) - 1 < $index) {
-            throw new InvalidArgumentException('$index is greater than the size of the array');
+            throw new \InvalidArgumentException('$index is greater than the size of the array');
         }
 
         array_splice($this->items, $index, 0, [$point]);

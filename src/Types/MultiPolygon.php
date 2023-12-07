@@ -59,7 +59,7 @@ class MultiPolygon extends GeometryCollection
         parent::offsetSet($offset, $value);
     }
 
-    public static function fromJson(string|GeoJson $geoJson): self
+    public static function fromJson(GeoJson|string $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

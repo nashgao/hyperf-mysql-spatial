@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Nashgao\HyperfMySQLSpatial\Schema;
 
-use Closure;
 use Hyperf\Database\Schema\MySqlBuilder;
 
 class Builder extends MySqlBuilder
@@ -14,7 +13,7 @@ class Builder extends MySqlBuilder
      *
      * @param string $table
      */
-    public function createBlueprint($table, Closure $callback = null): Blueprint
+    public function createBlueprint($table, \Closure $callback = null): Blueprint
     {
         return new Blueprint($table, $callback);
     }

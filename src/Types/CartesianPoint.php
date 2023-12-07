@@ -67,9 +67,7 @@ class CartesianPoint extends Geometry
     }
 
     /**
-     * @param $geoJson  Feature|string
-     *
-     * @return CartesianPoint
+     * @param $geoJson Feature|string
      */
     public static function fromJson($geoJson): self
     {

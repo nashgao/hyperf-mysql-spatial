@@ -27,7 +27,7 @@ class MultiPoint extends PointCollection
         return sprintf('MULTIPOINT(%s)', $this);
     }
 
-    public static function fromWkt(string $wkt, int $srid = 0)
+    public static function fromWkt(string $wkt, int $srid = 0): MultiPoint
     {
         $wktArgument = Geometry::getWKTArgument($wkt);
 
@@ -46,7 +46,7 @@ class MultiPoint extends PointCollection
         return new static($points, $srid);
     }
 
-    public static function fromJson(string|GeoJson $geoJson): self
+    public static function fromJson(GeoJson|string $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));

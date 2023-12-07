@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Nashgao\HyperfMySQLSpatial\Types;
 
-use ArrayAccess;
-use ArrayIterator;
-use Countable;
 use GeoJson\Feature\FeatureCollection;
 use GeoJson\GeoJson;
-use Hyperf\Utils\Contracts\Arrayable;
-use InvalidArgumentException;
-use IteratorAggregate;
+use Hyperf\Contract\Arrayable;
 use Nashgao\HyperfMySQLSpatial\Exceptions\InvalidGeoJsonException;
 
-class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAccess, Arrayable, Countable
+class GeometryCollection extends Geometry implements \IteratorAggregate, \ArrayAccess, Arrayable, \Countable
 {
     /**
      * The minimum number of items required to create this collection.
@@ -36,7 +31,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     /**
      * @param GeometryInterface[] $geometries
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     final public function __construct(iterable $geometries, int $srid = 0)
     {
@@ -84,9 +79,9 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return $this->items;
     }
 
-    public function getIterator(): ArrayIterator
+    public function getIterator(): \ArrayIterator
     {
-        return new ArrayIterator($this->items);
+        return new \ArrayIterator($this->items);
     }
 
     public function offsetExists(mixed $offset): bool
@@ -120,7 +115,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return count($this->items);
     }
 
-    public static function fromJson(string|GeoJson $geoJson): self
+    public static function fromJson(GeoJson|string $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
@@ -175,7 +170,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         if (count($items) < $this->minimumCollectionItems) {
             $entries = $this->minimumCollectionItems === 1 ? 'entry' : 'entries';
 
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 '%s must contain at least %d %s',
                 get_class($this),
                 $this->minimumCollectionItems,
@@ -187,14 +182,12 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     /**
      * Checks the type of the items in the array.
      *
-     * @param $item
-     *
      * @see $collectionItemType
      */
     protected function validateItemType($item): void
     {
         if (! $item instanceof $this->collectionItemType) {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 '%s must be a collection of %s',
                 get_class($this),
                 $this->collectionItemType

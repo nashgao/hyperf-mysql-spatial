@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nashgao\HyperfMySQLSpatial\Schema;
 
 use Hyperf\Database\Schema\Blueprint as HyperfBlueprint;
-use Hyperf\Utils\Fluent;
+use Hyperf\Support\Fluent;
 
 class Blueprint extends HyperfBlueprint
 {

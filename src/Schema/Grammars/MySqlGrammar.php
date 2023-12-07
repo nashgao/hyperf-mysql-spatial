@@ -6,7 +6,7 @@ namespace Nashgao\HyperfMySQLSpatial\Schema\Grammars;
 
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Schema\Grammars\MySqlGrammar as HyperfMySQLGrammar;
-use Hyperf\Utils\Fluent;
+use Hyperf\Support\Fluent;
 
 class MySqlGrammar extends HyperfMySQLGrammar
 {

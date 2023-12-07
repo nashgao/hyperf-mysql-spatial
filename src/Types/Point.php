@@ -33,7 +33,7 @@ class Point extends Geometry
         return $this->lat;
     }
 
-    public function setLat(string|float|int $lat)
+    public function setLat(float|int|string $lat): void
     {
         $this->lat = (float) $lat;
     }
@@ -43,7 +43,7 @@ class Point extends Geometry
         return $this->lng;
     }
 
-    public function setLng(string|float|int $lng)
+    public function setLng(float|int|string $lng)
     {
         $this->lng = (float) $lng;
     }
@@ -71,11 +71,9 @@ class Point extends Geometry
     }
 
     /**
-     * @param $geoJson  Feature|string
-     *
-     * @return Point
+     * @param $geoJson Feature|string
      */
-    public static function fromJson(string|GeoJson $geoJson): self
+    public static function fromJson(GeoJson|string $geoJson): self
     {
         if (is_string($geoJson)) {
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
